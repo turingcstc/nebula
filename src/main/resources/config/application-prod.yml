@@ -1,0 +1,36 @@
+# Copyright (c) TuringCSTC. All rights reserved.
+# Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
+
+# ----------------------------------------
+# WEB PROPERTIES
+# ----------------------------------------
+# Server HTTP port.
+server:
+  port: 8080
+
+# ----------------------------------------
+# CORE PROPERTIES
+# ----------------------------------------
+# LOGGING
+logging:
+  # Location of the log file. For instance, `/var/log`.
+  path: logs
+  file: ${logging.path}/nebula-prod.log
+  # Maximum of archive log files to keep. default 0 days to keep
+  file.max-history: 30
+  # Maximum log file size. default each archived file, size max 10MB
+  file.max-size: 20MB
+  # 项目依赖的library日志级别在logback-spring-prod.xml中设置。
+  config: classpath:config/logback-spring-prod.xml
+  # 项目package的日志级别在此设置。
+  # logger level : TRACE, DEBUG, INFO, WARN, ERROR, FATAL
+  Level:
+    root: INFO
+    nebula.application: INFO
+
+# BANNER
+# http://patorjk.com/software/taag/#p=display&h=0&v=0&f=Standard&t=Nebula-Dev
+spring:
+  banner:
+    location: classpath:banner/banner-prod.txt
+

@@ -1,0 +1,14 @@
+dependencies {
+    
+}
+
+def profiles = 'prod'
+
+processResources {
+    filesMatching('**/application.yml') {
+        filter {
+            it.replace('#spring.profiles.active#', profiles)
+        }
+    }
+}
+
