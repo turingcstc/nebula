@@ -1,0 +1,17 @@
+# Copyright (c) TuringCSTC. All rights reserved.
+# Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
+
+# ======================================================================================================================
+# Standard Spring Boot properties.
+# Full reference is available at:
+# https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#common-application-properties
+# ======================================================================================================================
+spring:
+  application:
+    name: nebula
+  profiles:
+    # The commented value for `active` can be replaced with valid Spring profiles to load.
+    # Otherwise, it will be filled in by gradle when building the WAR file
+    # Either way, it can be overridden by `--spring.profiles.active` value passed in the commandline or `-Dspring.profiles.active` set in `JAVA_OPTS`
+    # dev or prod
+    active: #spring.profiles.active#
