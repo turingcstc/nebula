@@ -16,10 +16,10 @@ logging:
   # Location of the log file. For instance, `/var/log`.
   path: logs
   file: ${logging.path}/nebula-dev.log
-  # Maximum of archive log files to keep. default 0 days
+  # Maximum of archive log files to keep. default 0 days to keep
   file.max-history: 0
-  # Maximum log file size. default 10MB
-  file. max-size: 10MB
+  # Maximum log file size. default each archived file, size max 10MB
+  file.max-size: 10MB
   # 项目依赖的library日志级别在logback-spring-dev.xml中设置。
   config: classpath:config/logback-spring-dev.xml
   # 项目package的日志级别在此设置。
