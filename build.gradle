@@ -1,6 +1,10 @@
 plugins {
     id 'org.springframework.boot' version '2.1.4.RELEASE'
     id 'java'
+    //来自 mapstruct 文档，新的 gradle 已经不需要这个了。
+    // Gradle plugin making it easier/safer to use Java annotation processors
+    // https://plugins.gradle.org/plugin/net.ltgt.apt
+    //id "net.ltgt.apt" version "0.21"
 }
 
 apply plugin: 'io.spring.dependency-management'
@@ -9,13 +13,46 @@ group = 'nebula'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
+//下面这几行来自 start.spring.io 生成的 lombok 配置，未理解用意，注释掉好像没有影响。
+// gradle 已经支持 compileOnly,这个配置可能针对低版本的gradle的。
+// 官网指南并没有这个配置。
+// https://projectlombok.org/setup/gradle
+//configurations {
+//    compileOnly {
+//        extendsFrom annotationProcessor
+//    }
+//}
+
+configurations {
+    developmentOnly
+    runtimeClasspath {
+        extendsFrom developmentOnly
+    }
+}
+
 repositories {
     mavenCentral()
 }
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    runtimeOnly 'org.springframework.boot:spring-boot-devtools'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.liquibase:liquibase-core'
+
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    //runtimeOnly 'mysql:mysql-connector-java'
+
+    compileOnly "org.mapstruct:mapstruct-jdk8:${mapstruct_version}"
+    annotationProcessor "org.mapstruct:mapstruct-processor:${mapstruct_version}"
+
+    //developmentOnly 是一个自定义的配置，spring boot 项目组提了一个issues,想要更新 gradle 插件，
+    // 提供此功能，而无需自定义配置，现在还未实现。
+    //https://docs.spring.io/spring-boot/docs/2.1.4.RELEASE/reference/htmlsingle/#using-boot-devtools
+    //https://github.com/spring-projects/spring-boot/issues/16599
+    //https://github.com/spring-io/initializr/issues/850
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
