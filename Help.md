@@ -17,3 +17,20 @@ File -> Settings -> Build, Execution, Deployment -> Compiler -> Annotation Proce
     - Mac OSX : SHIFT+COMMAND+A
     - Windows : CTRL+ALT+SHIFT+/
     - Enter Registry... and enable compiler.automake.allow.when.app.running
+ 
+* 将IDE的编译委托给 gradle，虽然不是必须的，但还是推荐使用这种方式运行.
+    File -> Settings -> Build, Execution, Deployment -> Gradle -> Runner 
+    启用 Delegate build/run actions to gradle
+    
+## 运行
+
+* 在项目文件导航面板中选择 NebulaApplication ，右键 Run 'NebulaApplication'。以启动程序主类的方式运行。 
+    - 可以在 Run Dashboard 面板中右键选择 NebulaApplication -> Edit configuration 设置 Active profiles 为 dev 或 prod，若不设置默认为 dev  
+    
+* 另外一种运行方式，在 Gradle 面板中点击 Tasks\application\bootRun 运行。或者从命令行执行 gradle 的 bootRun 命令。   
+
+
+## 容器
+
+运行一个 MySQL 容器
+docker run --name dbserver -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -d mysql     
