@@ -1,6 +1,6 @@
 # Technology Stack
 
-\- 表示未特殊指定版本，有些组件是随 Spring Boot 的特定版本提供的，具体版本参见 [Provided by Spring Boot 2.1.4](https://docs.spring.io/spring-boot/docs/2.1.4.RELEASE/reference/htmlsingle/#appendix-dependency-versions ) 
+\- 表示未特殊指定版本或随 Spring Boot 的特定版本提供的，具体版本参见 [Provided by Spring Boot 2.1.4](https://docs.spring.io/spring-boot/docs/2.1.4.RELEASE/reference/htmlsingle/#appendix-dependency-versions ) 
 
 | NAME | VERSION | OFFICIAL WEBSITE |
 |:------|:------:|:------|
@@ -10,6 +10,7 @@
 | Liquibase | - | http://www.liquibase.org/ |
 | H2 database | - | http://h2database.com/ |
 | lombok | - | https://projectlombok.org/ |
+| HikariCP | - | https://github.com/brettwooldridge/HikariCP |
 | mapstruct | 1.3.0 | http://mapstruct.org/ |
 
 
