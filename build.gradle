@@ -35,9 +35,33 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-web'
+
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.liquibase:liquibase-core'
+    implementation "org.springframework.boot:spring-boot-starter-cache"
+
+//    implementation 'org.springframework.security.oauth:spring-security-oauth2'
+    
+//    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    // 使用 org.hibernate.envers.Audited
+    implementation 'org.hibernate:hibernate-envers'
+    implementation 'org.apache.commons:commons-lang3'
+
+    implementation "org.zalando:problem-spring-web:0.24.0-RC.0"
+
+//    implementation "javax.cache:cache-api"
+    implementation "org.ehcache:ehcache"
+    implementation "org.hibernate:hibernate-jcache"
+
+//    implementation "org.springframework.security:spring-security-config"
+    implementation "org.springframework.security:spring-security-data"
+//    implementation "org.springframework.security:spring-security-web"
+
+    annotationProcessor ("org.springframework.boot:spring-boot-configuration-processor:${spring_boot_version}") {
+        exclude group: "com.vaadin.external.google", module: "android-json"
+    }
     
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
@@ -48,13 +72,15 @@ dependencies {
     //想把 mysql 运行库放到 profile_prod.gradle 文件中，发现不能正确初始化 Liquibase
     runtimeOnly 'mysql:mysql-connector-java'
     
-    //developmentOnly 是一个自定义的配置，spring boot 项目组提了一个issues,想要更新 gradle 插件，
-    // 提供此功能，而无需自定义配置，现在还未实现。
+    //developmentOnly 是一个自定义的配置，参考下面的官方文档。spring boot 项目组提了一个issues,想要更新 gradle 插件，
+    // 提供此功能，而无需自定义配置，现在还未实现。start.spring.io 此处使用了 runtimeOnly 。
     //https://docs.spring.io/spring-boot/docs/2.1.4.RELEASE/reference/htmlsingle/#using-boot-devtools
     //https://github.com/spring-projects/spring-boot/issues/16599
     //https://github.com/spring-io/initializr/issues/850
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.security:spring-security-test'
 }
 
 if (project.hasProperty('prod')) {

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="core_data" author="">
+        <loadData file="db/changelog/data/user.csv"
+                  separator=";"
+                  tableName="${prefix}user">
+        </loadData>
+
+        <loadData file="db/changelog/data/authority.csv"
+                  separator=";"
+                  tableName="${prefix}authority"/>
+
+        <loadData file="db/changelog/data/user_authority.csv"
+                  separator=";"
+                  tableName="${prefix}user_authority"/>
+
+        <loadData file="db/changelog/data/permission.csv"
+                  separator=";"
+                  tableName="${prefix}permission"/>
+
+        <loadData file="db/changelog/data/authority_permission.csv"
+                  separator=";"
+                  tableName="${prefix}authority_permission"/>
+
+    </changeSet>
+
+</databaseChangeLog>

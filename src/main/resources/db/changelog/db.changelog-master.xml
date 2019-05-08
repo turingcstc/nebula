@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <!-- 表前缀 value="nebula_" -->
+    <property name="prefix" value="nebula_"/>
+    <!-- 表主键 ID 是否为自增列 -->
+    <property name="autoIncrement" value="true"/>
+
+    <include file="db/changelog/db.changelog-core_schema.xml"/>
+    <include file="db/changelog/db.changelog-core_data.xml"/>
+
+    <include file="db/changelog/db.changelog-oauth_schema.xml"/>
+
+    <include file="db/changelog/db.changelog-test_schema.xml"/>
+    <include file="db/changelog/db.changelog-test_data.xml"/>
+
+</databaseChangeLog>

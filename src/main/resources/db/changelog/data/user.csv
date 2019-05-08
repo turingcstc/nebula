@@ -1,0 +1,5 @@
+id;login_id;password;user_name;email;account_expired;account_locked;credentials_expired;enabled;created_by;last_modified_by
+1;system;$2a$10$mE.qmcV0mFU5NcKh73TZx.z4ueI/.bDWbj0T1BYyqP481kGGarKLG;system;system@localhost;false;false;false;true;system;system
+2;admin;$2a$10$mE.qmcV0mFU5NcKh73TZx.z4ueI/.bDWbj0T1BYyqP481kGGarKLG;admin;admin@localhost;false;false;false;true;system;system
+3;anonymoususer;$2a$10$j8S5d7Sr7.8VTOYNviDPOeWX8KcYILUVJBsYV83Y5NtECayypx9lO;anonymoususer;anonymous@localhost;false;false;false;true;system;system
+4;user;$2a$10$VEjxo0jq2YG9Rbk2HmX9S.k1uZBGYUHdUcid3g/vfiEl7lwWgOH/K;user;user@localhost;false;false;false;true;system;system

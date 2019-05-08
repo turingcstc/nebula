@@ -25,7 +25,7 @@ logging:
   # 项目package的日志级别在此设置。
   # logger level : TRACE, DEBUG, INFO, WARN, ERROR, FATAL
   Level:
-    root: INFO
+    root: ERROR
     nebula.application: INFO
 
 # BANNER
@@ -53,4 +53,47 @@ spring:
   liquibase:
       # Change log configuration path.
       # 这里暂时使用与h2相同的数据库定义
-      change-log: classpath:/db/h2/changelog/db.changelog-master.xml
+      change-log: classpath:/db/changelog/db.changelog-master.xml
+
+# ===================================================================
+# JHipster specific properties
+#
+# Full reference is available at: https://www.jhipster.tech/common-application-properties/
+# ===================================================================
+
+jhipster:
+  http:
+    cache: # Used by the CachingHttpHeadersFilter
+      timeToLiveInDays: 1461
+  cache: # Cache configuration
+    ehcache: # Ehcache configuration
+      time-to-live-seconds: 3600 # By default objects stay 1 hour in the cache
+      max-entries: 1000 # Number of objects in each cache entry
+  security:
+    remember-me:
+      # security key (this key should be unique for your application, and kept secret)
+      key: e48612ba1fd46fa7089fe9f5085d8d164b53ffb2
+  mail: # specific JHipster mail property, for standard properties see MailProperties
+    from: jhipsterGradleSampleApplication@localhost
+    base-url: http://my-server-url-to-change # Modify according to your server's URL
+  metrics:
+    logs: # Reports metrics in the logs
+      enabled: false
+      report-frequency: 60 # in seconds
+  logging:
+    use-json-format: false # By default, logs are not in Json format
+    logstash: # Forward logs to logstash over a socket, used by LoggingConfiguration
+      enabled: false
+      host: localhost
+      port: 5000
+      queue-size: 512
+# ===================================================================
+# Application specific properties
+# Add your own application properties here, see the ApplicationProperties class
+# to have type-safe configuration, like in the JHipsterProperties above
+#
+# More documentation is available at:
+# https://www.jhipster.tech/common-application-properties/
+# ===================================================================
+
+# application:

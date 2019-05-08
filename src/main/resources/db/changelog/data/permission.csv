@@ -1,0 +1,5 @@
+id;name
+1;can_create_user
+2;can_update_user
+                 3;can_read_user
+                 4;can_delete_user
