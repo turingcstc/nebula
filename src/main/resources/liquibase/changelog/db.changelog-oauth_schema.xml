@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="oauth-schema" author="">
+
+        <createTable tableName="${prefix}oauth_client_details">
+            <column name="client_id" type="varchar(255)">
+                <constraints primaryKey="true" nullable="false" primaryKeyName="pk_oauth_client_details"/>
+            </column>
+            <column name="resource_ids" type="varchar(255)" />
+            <column name="client_secret" type="varchar(255)"/>
+            <column name="scope" type="varchar(255)"/>
+            <column name="authorized_grant_types" type="varchar(255)"/>
+            <column name="web_server_redirect_uri" type="varchar(255)"/>
+            <column name="authorities" type="varchar(255)"/>
+            <column name="access_token_validity" type="bigint"/>
+            <column name="refresh_token_validity" type="bigint"/>
+            <column name="additional_information" type="varchar(4096)"/>
+            <column name="autoapprove" type="varchar(255)"/>
+
+        </createTable>
+
+        <createTable tableName="${prefix}oauth_client_token">
+            <column name="authentication_id" type="varchar(255)">
+                <constraints primaryKey="true" nullable="false" primaryKeyName="pk_oauth_client_token"/>
+            </column>
+            <column name="token_id" type="varchar(255)" />
+            <column name="token" type="blob"/>
+            <column name="user_name" type="varchar(255)"/>
+            <column name="client_id" type="varchar(255)"/>
+
+        </createTable>
+
+        <createTable tableName="${prefix}oauth_access_token">
+        <column name="authentication_id" type="varchar(255)">
+            <constraints primaryKey="true" nullable="false" primaryKeyName="pk_oauth_access_token"/>
+        </column>
+        <column name="token_id" type="varchar(255)" />
+        <column name="token" type="blob"/>
+        <column name="user_name" type="varchar(255)"/>
+        <column name="client_id" type="varchar(255)"/>
+        <column name="authentication" type="blob"/>
+        <column name="refresh_token" type="varchar(255)"/>
+    </createTable>
+
+    <createTable tableName="${prefix}oauth_refresh_token">
+        <column name="token_id" type="varchar(255)" />
+        <column name="token" type="blob"/>
+        <column name="authentication" type="blob"/>
+    </createTable>
+
+    <createTable tableName="${prefix}oauth_code">
+        <column name="activationCode" type="varchar(255)" />
+        <column name="authentication" type="blob"/>
+    </createTable>
+
+    </changeSet>
+
+</databaseChangeLog>

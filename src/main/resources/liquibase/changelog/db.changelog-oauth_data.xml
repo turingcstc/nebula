@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="oauth_data" author="">
+        <loadData file="liquibase/data/oauth/oauth_client_details.csv"
+                  separator=";"
+                  tableName="${prefix}oauth_client_details">
+        </loadData>
+
+
+    </changeSet>
+
+</databaseChangeLog>

@@ -13,6 +13,8 @@ server:
 # ----------------------------------------
 # LOGGING
 logging:
+  #pattern:
+  #  console: "%boldMagenta(%d{yyyy-MM-dd HH:mm:ss}) %logger %class [%p]  %highlight(%C:%L)  : %m %n"
   # Location of the log file. For instance, `/var/log`.
   path: logs
   file: ${logging.path}/nebula-dev.log
@@ -25,8 +27,9 @@ logging:
   # 项目package的日志级别在此设置。
   # logger level : TRACE, DEBUG, INFO, WARN, ERROR, FATAL
   Level:
-    root: INFO
-    nebula.application: INFO
+    root: DEBUG
+    nebula: DEBUG
+    nebula.application: DEBUG
 
 # BANNER
 # http://patorjk.com/software/taag/#p=display&h=0&v=0&f=Standard&t=Nebula-Dev
@@ -51,12 +54,71 @@ spring:
       path: /h2-console
   liquibase:
     # Change log configuration path.
-    change-log: classpath:/db/h2/changelog/db.changelog-master.xml
-
+    change-log: classpath:liquibase/db.changelog-master.xml
+    # Comma-separated list of runtime contexts to use.
+    # http://www.liquibase.org/documentation/contexts.html
+    contexts: "sample"  # "!sample"
   # ----------------------------------------
   # DEVTOOLS PROPERTIES
   # ----------------------------------------
   devtools:
     # Whether to enable automatic restart. default = true
     restart.enabled: true
+#    additional-exclude: .h2.server.properties
+#    livereload:
+#      enabled: false # we use Webpack dev server + BrowserSync for livereload
+
+# ===================================================================
+# JHipster specific properties
+#
+# Full reference is available at: https://www.jhipster.tech/common-application-properties/
+# ===================================================================
+
+jhipster:
+  cache: # Cache configuration
+    ehcache: # Ehcache configuration
+      time-to-live-seconds: 3600 # By default objects stay 1 hour in the cache
+      max-entries: 100 # Number of objects in each cache entry
+  # CORS is only enabled by default with the "dev" profile, so BrowserSync can access the API
+  cors:
+    allowed-origins: '*'
+    allowed-methods: '*'
+    allowed-headers: '*'
+    exposed-headers: 'Authorization,Link,X-Total-Count'
+    allow-credentials: true
+    max-age: 1800
+  security:
+    authentication:
+      jwt:
+        # This token must be encoded using Base64 and be at least 256 bits long (you can type `openssl rand -base64 64` on your command line to generate a 512 bits one)
+        base64-secret: YjM1YTgxMGQyNDNlOGU0MzY2MDQ5OGUzZTAwMTJlMGQ4MjMxNDcyZWRhNzE0NDBjZDkwY2U1YzVlZjE3MmU1N2RkZWFjYzFkYTNmNDhlZDU3MzliYTQ2MWI4ODdmZDJjZDY2NTJkYTEwNjA5ZGZjOGZmYWQzMWYyNDhmMDFiNDE=
+        # Token is valid 24 hours
+        token-validity-in-seconds: 86400
+        token-validity-in-seconds-for-remember-me: 2592000
+  mail: # specific JHipster mail property, for standard properties see MailProperties
+    from: jhipsterSampleApplication@localhost
+    base-url: http://127.0.0.1:8080
+  metrics:
+    logs: # Reports metrics in the logs
+      enabled: false
+      report-frequency: 60 # in seconds
+  logging:
+    use-json-format: false # By default, logs are not in Json format
+    logstash: # Forward logs to logstash over a socket, used by LoggingConfiguration
+      enabled: false
+      host: localhost
+      port: 5000
+      queue-size: 512
+# ===================================================================
+# Application specific properties
+# Add your own application properties here, see the ApplicationProperties class
+# to have type-safe configuration, like in the JHipsterProperties above
+#
+# More documentation is available at:
+# https://www.jhipster.tech/common-application-properties/
+# ===================================================================
+
+# application:
+
+
 
