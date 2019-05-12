@@ -1,5 +1,4 @@
 package nebula.application.web.rest;
-
 import nebula.application.config.Constants;
 import nebula.application.domain.User;
 import nebula.application.repository.UserRepository;
@@ -9,7 +8,7 @@ import nebula.application.service.UserService;
 import nebula.application.service.dto.UserDTO;
 import nebula.application.web.rest.errors.BadRequestAlertException;
 import nebula.application.web.rest.errors.EmailAlreadyUsedException;
-import nebula.application.web.rest.errors.LoginIDAlreadyUsedException;
+import nebula.application.web.rest.errors.LoginAlreadyUsedException;
 
 import nebula.web.util.HeaderUtil;
 import nebula.web.util.PaginationUtil;
@@ -100,17 +99,15 @@ public class UserResource {
         if (userDTO.getId() != null) {
             throw new BadRequestAlertException("A new user cannot already have an ID", "userManagement", "idexists");
             // Lowercase the user login before comparing with database
-        } else if (userRepository.findOneByLoginID(userDTO.getLoginID().toLowerCase()).isPresent()) {
-            throw new LoginIDAlreadyUsedException();
-        }
-//        else if (userRepository.findOneByEmailIgnoreCase(userDTO.getEmail()).isPresent()) {
-//            throw new EmailAlreadyUsedException();
-//        }
-        else {
+        } else if (userRepository.findOneByLogin(userDTO.getLogin().toLowerCase()).isPresent()) {
+            throw new LoginAlreadyUsedException();
+        } else if (userRepository.findOneByEmailIgnoreCase(userDTO.getEmail()).isPresent()) {
+            throw new EmailAlreadyUsedException();
+        } else {
             User newUser = userService.createUser(userDTO);
             //mailService.sendCreationEmail(newUser);
-            return ResponseEntity.created(new URI("/api/users/" + newUser.getLoginID()))
-                    .headers(HeaderUtil.createAlert(applicationName,  "userManagement.created", newUser.getLoginID()))
+            return ResponseEntity.created(new URI("/api/users/" + newUser.getLogin()))
+                    .headers(HeaderUtil.createAlert(applicationName,  "userManagement.created", newUser.getLogin()))
                     .body(newUser);
         }
     }
@@ -121,26 +118,24 @@ public class UserResource {
      * @param userDTO the user to update.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated user.
      * @throws EmailAlreadyUsedException {@code 400 (Bad Request)} if the email is already in use.
-     * @throws LoginIDAlreadyUsedException {@code 400 (Bad Request)} if the login is already in use.
+     * @throws LoginAlreadyUsedException {@code 400 (Bad Request)} if the login is already in use.
      */
     @PutMapping("/users")
     @PreAuthorize("hasRole(\"" + AuthoritiesConstants.ADMIN + "\")")
     public ResponseEntity<UserDTO> updateUser(@Valid @RequestBody UserDTO userDTO) {
         log.debug("REST request to update User : {}", userDTO);
-//        Optional<User> existingUser = userRepository.findOneByEmailIgnoreCase(userDTO.getEmail());
-//        if (existingUser.isPresent() && (!existingUser.get().getId().equals(userDTO.getId()))) {
-//            throw new EmailAlreadyUsedException();
-//        }
-//        existingUser = userRepository.findOneByLogin(userDTO.getLogin().toLowerCase());
-
-        Optional<User>  existingUser = userRepository.findOneByLoginID(userDTO.getLoginID().toLowerCase());
+        Optional<User> existingUser = userRepository.findOneByEmailIgnoreCase(userDTO.getEmail());
         if (existingUser.isPresent() && (!existingUser.get().getId().equals(userDTO.getId()))) {
-            throw new LoginIDAlreadyUsedException();
+            throw new EmailAlreadyUsedException();
+        }
+        existingUser = userRepository.findOneByLogin(userDTO.getLogin().toLowerCase());
+        if (existingUser.isPresent() && (!existingUser.get().getId().equals(userDTO.getId()))) {
+            throw new LoginAlreadyUsedException();
         }
         Optional<UserDTO> updatedUser = userService.updateUser(userDTO);
 
         return ResponseUtil.wrapOrNotFound(updatedUser,
-                HeaderUtil.createAlert(applicationName, "userManagement.updated", userDTO.getLoginID()));
+                HeaderUtil.createAlert(applicationName, "userManagement.updated", userDTO.getLogin()));
     }
 
     /**

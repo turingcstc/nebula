@@ -8,7 +8,6 @@ import nebula.application.config.Constants;
 import org.hibernate.annotations.BatchSize;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -16,6 +15,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -23,14 +23,14 @@ import java.util.Set;
 @Table(
     name = "nebula_user",
     uniqueConstraints = {
-      @UniqueConstraint(columnNames = {"login_id"}),
+      @UniqueConstraint(columnNames = {"login"}),
       @UniqueConstraint(columnNames = {"email"})
     })
-@Getter
 @Setter
+@Getter
 @EqualsAndHashCode(of = "id")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-public class User extends AbstractAuditingEntity implements UserDetails, Serializable {
+public class User extends AbstractAuditingEntity implements Serializable {
 
   private static final long serialVersionUID = 1L;
 
@@ -42,8 +42,8 @@ public class User extends AbstractAuditingEntity implements UserDetails, Seriali
   @NotNull
   @Pattern(regexp = Constants.LOGIN_REGEX)
   @Size(min = 1, max = 50)
-  @Column(name = "login_id", length = 50, unique = true, nullable = false)
-  private String loginID;
+  @Column(name = "login", length = 50, unique = true, nullable = false)
+  private String login;
 
   @JsonIgnore
   @NotNull
@@ -73,8 +73,21 @@ public class User extends AbstractAuditingEntity implements UserDetails, Seriali
   private boolean credentialsExpired = false;
 
   @NotNull
-  @Column(nullable = false)
-  private boolean enabled = false;
+  @Column(name = "activated", nullable = false)
+  private boolean activated = false;
+
+  @Size(max = 20)
+  @Column(name = "activation_key", length = 20)
+  @JsonIgnore
+  private String activationKey;
+
+  @Size(max = 20)
+  @Column(name = "reset_key", length = 20)
+  @JsonIgnore
+  private String resetKey;
+
+  @Column(name = "reset_date")
+  private Instant resetDate = null;
 
   @JsonIgnore
   @ManyToMany
@@ -107,26 +120,31 @@ public class User extends AbstractAuditingEntity implements UserDetails, Seriali
   //        this.persistentTokens = persistentTokens;
   //    }
 
-  @Override
-  public boolean isAccountNonExpired() {
-    return !isAccountExpired();
-  }
-
-  @Override
-  public boolean isAccountNonLocked() {
-    return !isAccountLocked();
-  }
-
-  @Override
-  public boolean isCredentialsNonExpired() {
-    return !isCredentialsExpired();
-  }
+  //  @Override
+  //  public boolean isAccountNonExpired() {
+  //    return !isAccountExpired();
+  //  }
+  //
+  //  @Override
+  //  public boolean isAccountNonLocked() {
+  //    return !isAccountLocked();
+  //  }
+  //
+  //  @Override
+  //  public boolean isCredentialsNonExpired() {
+  //    return !isCredentialsExpired();
+  //  }
+  //
+  //  @Override
+  //  public boolean isEnabled() {
+  //    return !isEnabled();
+  //  }
 
   @Override
   public String toString() {
     return "User{"
-        + "loginID='"
-        + loginID
+        + "login='"
+        + login
         + '\''
         + "userName='"
         + username
@@ -143,8 +161,11 @@ public class User extends AbstractAuditingEntity implements UserDetails, Seriali
         + ", CredentialsExpired='"
         + credentialsExpired
         + '\''
-        + ", Enabled='"
-        + enabled
+        + ", activated='"
+        + activated
+        + '\''
+        + ", activationKey='"
+        + activationKey
         + '\''
         + "}";
   }

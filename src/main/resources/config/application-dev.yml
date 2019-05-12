@@ -54,8 +54,10 @@ spring:
       path: /h2-console
   liquibase:
     # Change log configuration path.
-    change-log: classpath:/db/changelog/db.changelog-master.xml
-
+    change-log: classpath:liquibase/db.changelog-master.xml
+    # Comma-separated list of runtime contexts to use.
+    # http://www.liquibase.org/documentation/contexts.html
+    contexts: "sample"  # "!sample"
   # ----------------------------------------
   # DEVTOOLS PROPERTIES
   # ----------------------------------------
@@ -82,15 +84,19 @@ jhipster:
     allowed-origins: '*'
     allowed-methods: '*'
     allowed-headers: '*'
-    exposed-headers: 'Link,X-Total-Count'
+    exposed-headers: 'Authorization,Link,X-Total-Count'
     allow-credentials: true
     max-age: 1800
   security:
-    remember-me:
-      # security key (this key should be unique for your application, and kept secret)
-      key: e48612ba1fd46fa7089fe9f5085d8d164b53ffb2
+    authentication:
+      jwt:
+        # This token must be encoded using Base64 and be at least 256 bits long (you can type `openssl rand -base64 64` on your command line to generate a 512 bits one)
+        base64-secret: YjM1YTgxMGQyNDNlOGU0MzY2MDQ5OGUzZTAwMTJlMGQ4MjMxNDcyZWRhNzE0NDBjZDkwY2U1YzVlZjE3MmU1N2RkZWFjYzFkYTNmNDhlZDU3MzliYTQ2MWI4ODdmZDJjZDY2NTJkYTEwNjA5ZGZjOGZmYWQzMWYyNDhmMDFiNDE=
+        # Token is valid 24 hours
+        token-validity-in-seconds: 86400
+        token-validity-in-seconds-for-remember-me: 2592000
   mail: # specific JHipster mail property, for standard properties see MailProperties
-    from: jhipsterGradleSampleApplication@localhost
+    from: jhipsterSampleApplication@localhost
     base-url: http://127.0.0.1:8080
   metrics:
     logs: # Reports metrics in the logs

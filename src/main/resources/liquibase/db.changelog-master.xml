@@ -11,12 +11,13 @@
     <!-- 表主键 ID 是否为自增列 -->
     <property name="autoIncrement" value="true"/>
 
-    <include file="db/changelog/db.changelog-core_schema.xml"/>
-    <include file="db/changelog/db.changelog-core_data.xml"/>
+    <include file="liquibase/changelog/db.changelog-core_schema.xml"/>
+    <include file="liquibase/changelog/db.changelog-core_data.xml"/>
 
-    <include file="db/changelog/db.changelog-oauth_schema.xml"/>
+    <include file="liquibase/changelog/db.changelog-oauth_schema.xml"/>
+    <include file="liquibase/changelog/db.changelog-oauth_data.xml"/>
 
-    <include file="db/changelog/db.changelog-test_schema.xml"/>
-    <include file="db/changelog/db.changelog-test_data.xml"/>
+    <include file="liquibase/changelog/db.changelog-sample_schema.xml"/>
+    <include file="liquibase/changelog/db.changelog-sample_data.xml"/>
 
 </databaseChangeLog>

@@ -22,7 +22,7 @@ public class UserDTO {
   @NotBlank
   @Pattern(regexp = Constants.LOGIN_REGEX)
   @Size(min = 1, max = 50)
-  private String loginID;
+  private String login;
 
   @Size(max = 50)
   private String userName;
@@ -50,13 +50,15 @@ public class UserDTO {
 
   private Set<String> authorities;
 
+  private boolean activated = false;
+
   public UserDTO() {
     // Empty constructor needed for Jackson.
   }
 
   public UserDTO(User user) {
     this.id = user.getId();
-    this.loginID = user.getLoginID();
+    this.login = user.getLogin();
     this.userName = user.getUsername();
     this.email = user.getEmail();
 
@@ -77,7 +79,7 @@ public class UserDTO {
   public String toString() {
     return "UserDTO{"
         + "login='"
-        + loginID
+        + login
         + '\''
         + ", userName='"
         + userName

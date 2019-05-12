@@ -12,8 +12,9 @@ File -> Settings -> Build, Execution, Deployment -> Compiler -> Annotation Proce
 
 * MapStruct Support(可选，提供 IDE 编辑支持) [help](http://mapstruct.org/documentation/ide-support/) 
 
-* google-java-format [help](https://github.com/google/google-java-format) 
+* google-java-format (格式化代码,可选) [help](https://github.com/google/google-java-format) 
     - File -> Settings -> Other Settings -> google-java-format Settings Enable google-java-format
+* [Material Theme UI (样式主题，可选)](https://plugins.jetbrains.com/plugin/8006-material-theme-ui) [help](https://www.material-theme.com/docs/introduction/)
 
 ### 插件的离线安装
 若因为国内的网络无法在IDE中安装可以通过下面网址下载插件后离线安装。
@@ -50,6 +51,7 @@ docker run --name dbserver -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -d mysql
 ### 工具
 
 Postman https://www.getpostman.com/
+MySQL Workbench 
 
 ### 启动一个用于测试的 Authorization Server
 

@@ -55,6 +55,12 @@ dependencies {
     implementation "org.ehcache:ehcache"
     implementation "org.hibernate:hibernate-jcache"
 
+    //https://github.com/jwtk/jjwt#install-jdk-gradle
+    implementation "io.jsonwebtoken:jjwt-api:0.10.5"
+    runtimeOnly "io.jsonwebtoken:jjwt-impl:0.10.5"
+    runtimeOnly "io.jsonwebtoken:jjwt-jackson:0.10.5"
+   
+
 //    implementation "org.springframework.security:spring-security-config"
     implementation "org.springframework.security:spring-security-data"
 //    implementation "org.springframework.security:spring-security-web"
@@ -78,6 +84,9 @@ dependencies {
     //https://github.com/spring-projects/spring-boot/issues/16599
     //https://github.com/spring-io/initializr/issues/850
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+
+    implementation "org.springframework.boot:spring-boot-starter-actuator"
     
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'

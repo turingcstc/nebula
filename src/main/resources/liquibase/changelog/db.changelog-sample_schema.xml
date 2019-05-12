@@ -10,7 +10,7 @@
     <property name="now" value="now()" dbms="h2"/>
     <property name="now" value="now()" dbms="mysql"/>
 
-    <changeSet id="test-schema" author="">
+    <changeSet id="sample-schema" author="" context="sample">
 
         <createTable tableName="${prefix}group">
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">

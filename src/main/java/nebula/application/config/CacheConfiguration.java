@@ -45,7 +45,7 @@ public class CacheConfiguration {
             createCache(cm, nebula.application.domain.Authority.class.getName());
             createCache(cm, nebula.application.domain.User.class.getName() + ".authorities");
       //      createCache(cm, io.github.jhipster.sample.domain.PersistentToken.class.getName());
-            createCache(cm, nebula.application.domain.User.class.getName() + ".persistentTokens");
+     //      createCache(cm, nebula.application.domain.User.class.getName() + ".persistentTokens");
      //       createCache(cm, io.github.jhipster.sample.domain.BankAccount.class.getName());
      //       createCache(cm, io.github.jhipster.sample.domain.BankAccount.class.getName() + ".operations");
      //       createCache(cm, io.github.jhipster.sample.domain.Label.class.getName());

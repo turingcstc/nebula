@@ -7,8 +7,9 @@
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
     <property name="prefix" value="nebula_"/>
-    <changeSet id="test_data" author="">
-        <loadData file="db/changelog/data/group.csv"
+
+    <changeSet id="test_data" author="" context="sample">
+        <loadData file="liquibase/data/sample/group.csv"
                   separator=";"
                   tableName="${prefix}group"/>
 

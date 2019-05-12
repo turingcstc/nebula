@@ -24,24 +24,23 @@ spring:
 #
 # Full reference is available at: https://www.jhipster.tech/common-application-properties/
 # ===================================================================
-
 jhipster:
   clientApp:
-    name: 'jhipsterGradleSampleApplicationApp'
+    name: 'jhipsterSampleApplicationApp'
   # By default CORS is disabled. Uncomment to enable.
   # cors:
   #     allowed-origins: "*"
   #     allowed-methods: "*"
   #     allowed-headers: "*"
-  #     exposed-headers: "Link,X-Total-Count"
+  #     exposed-headers: "Authorization,Link,X-Total-Count"
   #     allow-credentials: true
   #     max-age: 1800
   mail:
-    from: jhipsterGradleSampleApplication@localhost
+    from: jhipsterSampleApplication@localhost
   swagger:
     default-include-pattern: /api/.*
-    title: jhipsterGradleSampleApplication API
-    description: jhipsterGradleSampleApplication API documentation
+    title: jhipsterSampleApplication API
+    description: jhipsterSampleApplication API documentation
     version: 0.0.1
     terms-of-service-url:
     contact-name:
@@ -54,8 +53,8 @@ jhipster:
 # Application specific properties
 # Add your own application properties here, see the ApplicationProperties class
 # =============================================================================
-application:
+# application:
   # For demo
-  servers:
-    - dev.example.com
-    - another.example.com
+#  servers:
+#    - dev.example.com
+#    - another.example.com
