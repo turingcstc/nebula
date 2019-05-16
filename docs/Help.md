@@ -16,6 +16,8 @@ File -> Settings -> Build, Execution, Deployment -> Compiler -> Annotation Proce
     - File -> Settings -> Other Settings -> google-java-format Settings Enable google-java-format
 * [Material Theme UI (样式主题，可选)](https://plugins.jetbrains.com/plugin/8006-material-theme-ui) [help](https://www.material-theme.com/docs/introduction/)
 
+* [Save Actions 可选，including "optimize imports", "reformat code", "rearrange code"](https://plugins.jetbrains.com/plugin/7642-save-actions)
+
 ### 插件的离线安装
 若因为国内的网络无法在IDE中安装可以通过下面网址下载插件后离线安装。
 http://plugins.jetbrains.com/idea
@@ -92,3 +94,7 @@ MySQL Workbench
 
 http://localhost:8080/h2-console/
 JDBC URL : jdbc:h2:mem:NebulaDB
+
+
+docker 
+https://hellokoding.com/spring-boot-restful-api-documentation-with-swagger-and-springfox/

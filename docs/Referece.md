@@ -2,7 +2,7 @@
 
 ## 下面是一些参考资源
 
-### OAuth & jwt 标准
+### OAuth & jwt,OAS 标准
 - [OAuth 2.0](https://oauth.net/2/)
 - [OAuth 2.0 by okta](https://www.oauth.com)
 - [OpenID Connect discovery](https://openid.net/specs/openid-connect-discovery-1_0.html)
@@ -10,6 +10,8 @@
 - [The OAuth 2.0 Authorization Framework: Bearer Token Usage](https://tools.ietf.org/html/rfc6750)
 - [JSON Web Token (JWT)](https://tools.ietf.org/html/rfc7519)
 - [What is the difference between OAuth based and Token based authentication?](https://stackoverflow.com/a/34930402)
+- [OpenAPI Specification (OAS)](https://github.com/OAI/OpenAPI-Specification)
+- [swagger](https://swagger.io/)
 
 ### Spring
 - [OAuth 2.0 Features Matrix](https://github.com/spring-projects/spring-security/wiki/OAuth-2.0-Features-Matrix)

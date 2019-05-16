@@ -45,8 +45,8 @@ spring:
     username: sa
     password:
     hikari:
-        poolName: Hikari
-        auto-commit: false
+      poolName: Hikari
+      auto-commit: false
   h2:
     console:
       enabled: true
@@ -67,6 +67,16 @@ spring:
 #    additional-exclude: .h2.server.properties
 #    livereload:
 #      enabled: false # we use Webpack dev server + BrowserSync for livereload
+
+nebula:
+  security:
+    authentication:
+      jwt:
+        # This token must be encoded using Base64 and be at least 256 bits long (you can type `openssl rand -base64 64` on your command line to generate a 512 bits one)
+        base64-secret: YjM1YTgxMGQyNDNlOGU0MzY2MDQ5OGUzZTAwMTJlMGQ4MjMxNDcyZWRhNzE0NDBjZDkwY2U1YzVlZjE3MmU1N2RkZWFjYzFkYTNmNDhlZDU3MzliYTQ2MWI4ODdmZDJjZDY2NTJkYTEwNjA5ZGZjOGZmYWQzMWYyNDhmMDFiNDE=
+        # Token is valid 24 hours
+        token-validity-in-seconds: 86400
+        token-validity-in-seconds-for-remember-me: 2592000  #30 hours;
 
 # ===================================================================
 # JHipster specific properties

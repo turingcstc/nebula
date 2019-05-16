@@ -20,7 +20,8 @@
 | problem-spring-web ([rfc7807](https://tools.ietf.org/html/rfc7807))| - | https://github.com/zalando/problem-spring-web |
 | webjars | - | https://www.webjars.org |
 | Java JWT(JSON Web Token for Java and Android) | 1.10.5 | https://github.com/jwtk/jjwt |
+| springfox(implementation of the Swagger 2 specification) | - | https://github.com/springfox/springfox |
 
-
+ 
 
 
