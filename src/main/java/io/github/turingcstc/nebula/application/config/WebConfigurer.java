@@ -1,6 +1,6 @@
 package io.github.turingcstc.nebula.application.config;
 
-import io.github.turingcstc.nebula.config.JHipsterConstants;
+import io.github.turingcstc.nebula.config.NebulaConstants;
 import io.github.turingcstc.nebula.config.JHipsterProperties;
 import io.github.turingcstc.nebula.web.filter.CachingHttpHeadersFilter;
 import org.slf4j.Logger;
@@ -55,7 +55,7 @@ public class WebConfigurer
     }
     EnumSet<DispatcherType> disps =
         EnumSet.of(DispatcherType.REQUEST, DispatcherType.FORWARD, DispatcherType.ASYNC);
-    if (env.acceptsProfiles(Profiles.of(JHipsterConstants.SPRING_PROFILE_PRODUCTION))) {
+    if (env.acceptsProfiles(Profiles.of(NebulaConstants.SPRING_PROFILE_PRODUCTION))) {
       initCachingHttpHeadersFilter(servletContext, disps);
     }
 

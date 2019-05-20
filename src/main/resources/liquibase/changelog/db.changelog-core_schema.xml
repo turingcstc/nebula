@@ -18,7 +18,7 @@
         https://stackoverflow.com/questions/16890723/list-all-liquibase-sql-types
      -->
 
-    <changeSet id="core-schema" author="">
+    <changeSet id="core-schema" author="" context="core">
 
         <createTable tableName="${prefix}user">
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">

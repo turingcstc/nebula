@@ -5,7 +5,7 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
-    <changeSet id="core_data" author="">
+    <changeSet id="core_data" author="" context="core">
 
         <!--
         “system”, who is mainly used by our audit logs, when something is done automatically

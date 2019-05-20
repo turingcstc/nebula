@@ -1,14 +1,12 @@
 package io.github.turingcstc.nebula.config;
 
-/**
- * JHipster constants.
- */
-public interface JHipsterConstants {
+public interface NebulaConstants {
 
-    // Spring profiles for development, test and production, see https://www.jhipster.tech/profiles/
+    // Spring profiles for development, test and production
     String SPRING_PROFILE_DEVELOPMENT = "dev";
     String SPRING_PROFILE_TEST = "test";
     String SPRING_PROFILE_PRODUCTION = "prod";
+
     // Spring profile used when deploying with Spring Cloud (used when deploying to CloudFoundry)
     String SPRING_PROFILE_CLOUD = "cloud";
     // Spring profile used when deploying to Heroku

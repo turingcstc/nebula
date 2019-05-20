@@ -1,6 +1,6 @@
 package io.github.turingcstc.nebula.application.config;
 
-import io.github.turingcstc.nebula.config.JHipsterConstants;
+import io.github.turingcstc.nebula.config.NebulaConstants;
 import org.springframework.boot.SpringApplication;
 
 import java.util.HashMap;
@@ -30,7 +30,7 @@ public final class DefaultProfileUtil {
          * This cannot be set in the application.yml file.
          * See https://github.com/spring-projects/spring-boot/issues/1219
          */
-        defProperties.put(SPRING_PROFILE_DEFAULT, JHipsterConstants.SPRING_PROFILE_DEVELOPMENT);
+        defProperties.put(SPRING_PROFILE_DEFAULT, NebulaConstants.SPRING_PROFILE_DEVELOPMENT);
         app.setDefaultProperties(defProperties);
     }
 }

@@ -22,9 +22,9 @@ logging:
   file.max-history: 0
   # Maximum log file size. default each archived file, size max 10MB
   file.max-size: 10MB
-  # 项目依赖的library日志级别在logback-spring-dev.xml中设置。
+
   config: classpath:config/logback-spring-dev.xml
-  # 项目package的日志级别在此设置。
+
   # logger level : TRACE, DEBUG, INFO, WARN, ERROR, FATAL
   Level:
     root: DEBUG
@@ -53,11 +53,9 @@ spring:
       # Path at which the console is available.http://localhost:8080/h2-console
       path: /h2-console
   liquibase:
-    # Change log configuration path.
-    change-log: classpath:liquibase/db.changelog-master.xml
     # Comma-separated list of runtime contexts to use.
     # http://www.liquibase.org/documentation/contexts.html
-    contexts: "sample"  # "!sample"
+    contexts: "core,oauth,sample"
   # ----------------------------------------
   # DEVTOOLS PROPERTIES
   # ----------------------------------------

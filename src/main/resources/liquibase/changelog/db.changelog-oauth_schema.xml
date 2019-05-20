@@ -5,7 +5,7 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
-    <changeSet id="oauth-schema" author="">
+    <changeSet id="oauth-schema" author="" context="oauth">
 
         <createTable tableName="${prefix}oauth_client_details">
             <column name="client_id" type="varchar(255)">

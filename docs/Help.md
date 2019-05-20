@@ -5,16 +5,17 @@
 ## Intellij IDEA 配置
 
 ### 插件安装
-* Lombok (必须，否则无法在 IDE 中编译)
+* Lombok (必须，否则在 IDE 中因为找不到类的方法显示编译错误)
     - [install help](https://projectlombok.org/setup/intellij)
     - Lombok Requires Annotation Processing.For the lombok plugin to function correctly,please enable it under 
 File -> Settings -> Build, Execution, Deployment -> Compiler -> Annotation Processors
-
+    注意，上面这个步骤如果将IDE的编译委托给 gradle，则可以不用设置(见下面说明)，否则需要设置，若不设置会提示编译错误。
+    
 * MapStruct Support(可选，提供 IDE 编辑支持) [help](http://mapstruct.org/documentation/ide-support/) 
 
-* google-java-format (格式化代码,可选) [help](https://github.com/google/google-java-format) 
+* google-java-format (可选，格式化代码) [help](https://github.com/google/google-java-format) 
     - File -> Settings -> Other Settings -> google-java-format Settings Enable google-java-format
-* [Material Theme UI (样式主题，可选)](https://plugins.jetbrains.com/plugin/8006-material-theme-ui) [help](https://www.material-theme.com/docs/introduction/)
+* [Material Theme UI (可选，样式主题)](https://plugins.jetbrains.com/plugin/8006-material-theme-ui) [help](https://www.material-theme.com/docs/introduction/)
 
 * [Save Actions 可选，including "optimize imports", "reformat code", "rearrange code"](https://plugins.jetbrains.com/plugin/7642-save-actions)
 
@@ -32,18 +33,23 @@ http://plugins.jetbrains.com/idea
     - Windows : CTRL+ALT+SHIFT+/
     - Enter Registry... and enable compiler.automake.allow.when.app.running
  
-* 将IDE的编译委托给 gradle，虽然不是必须的，但还是推荐使用这种方式运行.
-(注意：发现一个奇怪的问题，当使用这种方法时，spring boot devtools 会频繁自己重新启动，未查找到原因，暂时不要用这种方法。)
-    File -> Settings -> Build, Execution, Deployment -> Gradle -> Runner 
-    启用 Delegate build/run actions to gradle
+### Import project from a gradle model
+
+Select File | New | Project from Existing Sources from the main menu.
+In the dialog that opens, select the directory that contains the project you want to import or a file that contains a Gradle project description (build.gradle). Click OK.
     
 ### 运行
 
+* 将IDE的编译委托给 gradle.
+With this setting annotation processing is automatically configured and you won’t have duplicated classes when mixing IDE and cli builds.
+(注意：发现一个奇怪的问题，当使用这种方法时，spring boot devtools 会频繁自己重新启动，虽然委托给 gradle 编译，但IDE还是会频繁生成class到out目录下引起的，暂时不要用这种方法。)
+    File -> Settings -> Build, Execution, Deployment -> Gradle -> Runner 
+    启用 Delegate build/run actions to gradle
+    
 * 在项目文件导航面板中选择 NebulaApplication ，右键 Run 'NebulaApplication'。以启动程序主类的方式运行。 
     - 可以在 Run Dashboard 面板中右键选择 NebulaApplication -> Edit configuration 设置 Active profiles 为 dev 或 prod，若不设置默认为 dev  
     
-* 另外一种运行方式，在 Gradle 面板中点击 Tasks\application\bootRun 运行。或者从命令行执行 gradle 的 bootRun 命令。   
-
+* 另外一种运行方式，在 Gradle 面板中点击 Tasks\application\bootRun 运行。或者从命令终端 Terminal 执行 gradle 的 bootRun 命令。   
 
 ### 容器
 
@@ -79,7 +85,6 @@ MySQL Workbench
         - grant_type:password
         - username:demouser
         - password:demouser
-
 - 参考
     - https://www.keycloak.org/docs/latest/getting_started/index.html 
     - https://hub.docker.com/r/jboss/keycloak
@@ -98,3 +103,20 @@ JDBC URL : jdbc:h2:mem:NebulaDB
 
 docker 
 https://hellokoding.com/spring-boot-restful-api-documentation-with-swagger-and-springfox/
+
+
+### Using TLS and HTTP/2 in development
+
+- Generate a certificate using
+As the certificate is self-signed, your browser will issue a warning, and you will need to ignore it (or import it) in order to access the application.
+    |||
+    |:---|:--- |
+    | keytool | 安装在 jdk bin 目录下 |
+    | alias | 别名 |
+    | storetype | 密钥库类型 |
+    | keyalg | 密钥算法名称 |
+    | keysize | 密钥位大小 |
+    | keystore | 密钥库名称 |
+    | validity | 有效天数 |
+ 
+    > keytool -genkeypair -alias <your-application> -storetype PKCS12 -keyalg RSA -keysize 2048 -keystore keystore.p12 -validity 3650

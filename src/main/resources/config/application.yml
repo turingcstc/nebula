@@ -17,12 +17,11 @@ spring:
     active: #spring.profiles.active#
   jmx:
     # Expose management beans to the JMX domain.
-    # 禁止对外提供 Spring MBeans
     enabled: false
   data:
     jpa:
       repositories:
-        # 对 Hibernate 异步引导的支持。Hibernate 将在一个独立的线程中启动，而其他应用程序的启动是同时并行的。
+        # Support for Hibernate asynchronous boot. Hibernate will start in a separate thread, while other applications start up in parallel.
         bootstrap-mode: deferred
   jpa:
     # https://stackoverflow.com/questions/30549489/what-is-this-spring-jpa-open-in-view-true-property-in-spring-boot
@@ -48,7 +47,7 @@ server:
   servlet:
     session:
       cookie:
-        # 通过程序(JS脚本、Applet等)将无法读取到Cookie信息，这样能有效的防止XSS攻击。
+        # JS scripts, applets, will not be able to read the cookie information, which can effectively prevent XSS attacks.
         http-only: true
 
 # ===================================================================
@@ -81,11 +80,11 @@ jhipster:
     license:
     license-url:
 
-# =============================================================================
-# Application specific properties
-# Add your own application properties here, see the ApplicationProperties class
-# =============================================================================
-# application:
+  # =============================================================================
+  # Application specific properties
+  # Add your own application properties here, see the ApplicationProperties class
+  # =============================================================================
+  # application:
   # For demo
 #  servers:
 #    - dev.example.com
