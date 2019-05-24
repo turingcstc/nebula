@@ -1,0 +1,18 @@
+jib {
+    from {
+        image = "openjdk:11-jre-slim-stretch"
+    }
+    to {
+        image = "nebula:latest"
+    }
+    container {
+        entrypoint = ["sh", "-c", "chmod +x /docker-entrypoint.sh && sync && /docker-entrypoint.sh"]
+        ports = ["8080"]
+        environment = [
+                SPRING_OUTPUT_ANSI_ENABLED: "ALWAYS",
+                SLEEP_SECONDS: "0"
+        ]
+        useCurrentTimestamp = true
+    }
+}
+

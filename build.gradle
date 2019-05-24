@@ -5,6 +5,9 @@ plugins {
     // Gradle plugin making it easier/safer to use Java annotation processors
     // https://plugins.gradle.org/plugin/net.ltgt.apt
     //id "net.ltgt.apt" version "0.21"
+
+    //id "war"
+    id 'com.google.cloud.tools.jib' version '1.2.0' //"0.9.11" 
 }
 
 apply plugin: 'io.spring.dependency-management'
@@ -22,6 +25,8 @@ sourceCompatibility = '1.8'
 //        extendsFrom annotationProcessor
 //    }
 //}
+
+
 
 configurations {
     developmentOnly
@@ -93,6 +98,8 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'
 }
+
+apply from: "docker.gradle"
 
 if (project.hasProperty('prod')) {
     apply from: 'profile_prod.gradle'

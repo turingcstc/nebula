@@ -54,8 +54,8 @@ With this setting annotation processing is automatically configured and you won�
 ### 容器
 
 运行一个 MySQL 容器
-docker run --name dbserver -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -d mysql  
-
+docker run --name dbserver -p 3306:3306 -e MYSQL_ALLOW_EMPTY_PASSWORD=yes -d mysql  
+docker run --name dbserver -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -d mysql 
 ### 工具
 
 Postman https://www.getpostman.com/
@@ -120,3 +120,26 @@ As the certificate is self-signed, your browser will issue a warning, and you wi
     | validity | 有效天数 |
  
     > keytool -genkeypair -alias <your-application> -storetype PKCS12 -keyalg RSA -keysize 2048 -keystore keystore.p12 -validity 3650
+    
+    
+    
+## Using Docker to simplify development (optional)
+
+You can use Docker to improve your JHipster development experience. A number of docker-compose configuration are available in the [src/main/docker](src/main/docker) folder to launch required third party services.
+
+For example, to start a mysql database in a docker container, run:
+
+    docker-compose -f src/main/docker/mysql.yml up -d
+
+To stop it and remove the container, run:
+
+    docker-compose -f src/main/docker/mysql.yml down
+
+You can also fully dockerize your application and all the services that it depends on.
+To achieve this, first build a docker image of your app by running:
+
+    gradlew bootJar -Pprod jibDockerBuild
+
+Then run:
+
+    docker-compose -f src/main/docker/app.yml up -d
