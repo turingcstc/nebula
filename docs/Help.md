@@ -143,3 +143,7 @@ To achieve this, first build a docker image of your app by running:
 Then run:
 
     docker-compose -f src/main/docker/app.yml up -d
+
+To stop it and remove the container
+
+    docker-compose -f src/main/docker/app.yml down

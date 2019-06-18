@@ -49,8 +49,10 @@ public class LiquibaseConfiguration {
     liquibase.setDropFirst(liquibaseProperties.isDropFirst());
     liquibase.setChangeLogParameters(liquibaseProperties.getParameters());
     if (env.acceptsProfiles(Profiles.of(NebulaConstants.SPRING_PROFILE_NO_LIQUIBASE))) {
+
       liquibase.setShouldRun(false);
     } else {
+
       liquibase.setShouldRun(liquibaseProperties.isEnabled());
       log.debug("Configuring Liquibase");
     }
